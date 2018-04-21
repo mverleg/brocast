@@ -9,8 +9,12 @@ class ManagerPath {
     private serverFunctions: string = "server"
     private serverFunctionsAddFakeUsers: string = "fakeUsers"
 
-    getPathToServerFunctionsFakeUsers(): string { 
-        return managerPathSeperator.addSlashBetweenPaths([this.serverFunctions, this.serverFunctionsAddFakeUsers]);
+    getPathToServerFunctions(): string { 
+        return this.serverFunctions;
+    }
+
+    getPathFakeUsers(): string { 
+        return this.serverFunctionsAddFakeUsers;
     }
 
     getPathToUsersCollection(): string { 

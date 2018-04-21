@@ -6,7 +6,7 @@ import { managerDataExtractor } from './Managers/ManagerDataExtractor';
 admin.initializeApp();
 const db = admin.firestore();
 
-exports.fillDatabaseWithFakeUsers = functions.firestore.document(`${managerPath.getPathToServerFunctionsFakeUsers()}`).onCreate((snap, context) => { 
+exports.fillDatabaseWithFakeUsers = functions.firestore.document(`${managerPath.getPathToServerFunctions()}/${managerPath.getPathFakeUsers()}`).onCreate((snap, context) => { 
 
     var promises = [];
     const dbPathToUserCollection = managerPath.getPathToUsersCollection();
@@ -30,7 +30,7 @@ exports.firstLogin = functions.auth.user().onCreate((user) => {
    return db.doc(dbPath).set(userObject)
 })
 
-exports.createNewChat = functions.firestore.document(`${managerPath.getPathToCreateNewChat}/{documentId}`).onCreate((snap, context) => { 
+exports.createNewChat = functions.firestore.document(`${managerPath.getPathToCreateNewChat()}/{documentId}`).onCreate((snap, context) => { 
 
     var promises = [];
     const pathToThisId = managerPath.getPathToCreateNewChat() + snap.id;
@@ -53,8 +53,8 @@ exports.createNewChat = functions.firestore.document(`${managerPath.getPathToCre
     return Promise.all(promises);
 })
 
-exports.getUsersForTelephoneNumbers = functions.firestore.document(`${managerPath.getPathToRetrievePhoneNumbers}/{documentId`).onCreate((snap, context) => { 
+// exports.getUsersForTelephoneNumbers = functions.firestore.document(`${managerPath.getPathToRetrievePhoneNumbers()}/{documentId`).onCreate((snap, context) => { 
 
-    console.log("...")
+//     console.log("...")
 
-})
+// })
