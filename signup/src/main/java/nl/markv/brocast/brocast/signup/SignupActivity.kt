@@ -1,7 +1,7 @@
 package nl.markv.brocast.brocast.signup
 
+import nl.markv.brocast.brocast.app.AddChatChooseUsersActivity
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -16,8 +16,8 @@ class SignupActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            val intent = AddChatChooseUsersActivity.newIntent(this);
+            startActivity(intent);
         }
     }
 
