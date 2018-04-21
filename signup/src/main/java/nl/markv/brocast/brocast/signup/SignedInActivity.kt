@@ -2,8 +2,10 @@ package nl.markv.brocast.brocast.signup
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.ProgressBar
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
@@ -17,10 +19,13 @@ class SignedInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signed_in)
-        updateUserlist()
+
+        loadUsers()
     }
 
     fun loadUsers() {
+        val progress = findViewById(R.id.progress_load_users) as ProgressBar
+        progress.visibility = View.VISIBLE
         val db = FirebaseFirestore.getInstance()
         db.collection("users")
                 // .whereEqualTo("is_contact", true)
@@ -29,8 +34,9 @@ class SignedInActivity : AppCompatActivity() {
                     override fun onComplete(task: Task<QuerySnapshot>) {
                         if (task.isSuccessful()) {
                             userList = UserList(task.getResult().map {
-                                User(it.get("uid") as String, it.get("displayName") as String)
+                                User(it.id, it.data["displayName"] as String)
                             }.toList())
+                            progress.visibility = View.GONE;
                             updateUserlist()
                         } else {
                             throw IllegalArgumentException("Could not retrieve users...")  // todo
