@@ -25,6 +25,6 @@ android {
 }
 
 dependencies {
-    implementation project(':signup')
+    implementation project(':brocast')
     implementation project(':base')
 }

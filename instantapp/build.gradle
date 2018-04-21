@@ -1,6 +1,6 @@
 apply plugin: 'com.android.instantapp'
 
 dependencies {
-    implementation project(':signup')
+    implementation project(':brocast')
     implementation project(':base')
 }

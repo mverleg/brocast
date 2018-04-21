@@ -22,5 +22,5 @@ dependencies {
     api 'com.android.support.constraint:constraint-layout:1.1.0'
     api 'com.android.support:design:27.1.1'
     application project(':app')
-    feature project(':signup')
+    feature project(':brocast')
 }
