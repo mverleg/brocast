@@ -9,8 +9,13 @@ class UserList(val users: List<User>) {
         return users
     }
 
-    // Get users matched by search query
+    /// Get users matched by search query
     fun search(query: String): List<User> {
         return all().filter{ query in it.name }.toList()
+    }
+
+    /// Get specific element in the list
+    fun get(index: Int): User {
+        return users[index]
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import org.jetbrains.anko.AnkoLogger
@@ -13,7 +14,6 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
-import nl.markv.brocast.brocast.signup.R.id.btn_groups
 
 class SignedInActivity : AppCompatActivity(), AnkoLogger {
 
@@ -24,11 +24,17 @@ class SignedInActivity : AppCompatActivity(), AnkoLogger {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signed_in)
 
-
         btn_groups.setOnClickListener({
             val intent = Intent(this, GroupActivity::class.java)
             startActivity(intent)
         })
+
+        val userListView = findViewById(R.id.user_list_view) as ListView
+        userListView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, id ->
+            val intent = Intent(this, ConversationActivity::class.java)
+            intent.putExtra("userId", userList!!.get(position).id)
+            startActivity(intent)
+        }
 
         loadUsers()
     }
@@ -60,8 +66,10 @@ class SignedInActivity : AppCompatActivity(), AnkoLogger {
             return
         }
         this.userListView = findViewById(R.id.user_list_view) as ListView
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userList!!.all().map{it.name}.toList())
+        val adapter = ArrayAdapter(this,
+                android.R.layout.simple_list_item_1,
+                userList!!.all().map{it.name}.toList()
+        )
         userListView!!.setAdapter(adapter)
-
     }
 }
