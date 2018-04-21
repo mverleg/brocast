@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import org.jetbrains.anko.AnkoLogger
 import kotlinx.android.synthetic.main.signed_in_titlebar.*
 import android.widget.ProgressBar
 import com.google.android.gms.tasks.OnCompleteListener
@@ -13,7 +14,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 
-class SignedInActivity : AppCompatActivity() {
+class SignedInActivity : AppCompatActivity(), AnkoLogger {
 
     private var userListView: ListView? = null
     private var userList: UserList? = null
