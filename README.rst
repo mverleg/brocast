@@ -7,10 +7,10 @@ BroCast is the new instant messaging app that all the cool kids use! It simplifi
 Team members
 -------------------------------
 
-* Sander Kools
-* Yoeri Houtzager
-* Jasper Visser
-* Mark Verleg
+* Sander Kools (@Grabot)
+* Yoeri Houtzager (@yhoutzager)
+* Jasper Visser (@jasperav)
+* Mark Verleg (@mverleg)
 
 Context
 -------------------------------
