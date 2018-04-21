@@ -36,4 +36,3 @@ To launch the app from Android Studio:
 * Run configuration
 * Module: app
 * Run
-
