@@ -1,75 +1,139 @@
 package nl.markv.brocast.brocast.signup
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.widget.Button
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
-
-import kotlinx.android.synthetic.main.activity_signup.*
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-
+import java.util.*
+import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.ErrorCodes
+import com.firebase.ui.auth.IdpResponse
+import kotlinx.android.synthetic.main.activity_phone_auth.*
 
 
 class SignupActivity : AppCompatActivity() {
 
-    var fbAuth = FirebaseAuth.getInstance()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup)
-        setSupportActionBar(toolbar)
+        setContentView(R.layout.activity_phone_auth)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
+        val isUserSignedIn = FirebaseAuth.getInstance().currentUser != null
 
-        var btnLogin = findViewById<Button>(R.id.btnLogin)
-        btnLogin.setOnClickListener {view ->
-            signIn(view,"user@company.com", "pass")
-        }
-    }
-
-    fun signIn(view: View, email: String, password: String){
-        showMessage(view,"Authenticating...")
-
-        fbAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
-            if(task.isSuccessful){
-                var intent = Intent(this, LoggedInActivity::class.java)
-                intent.putExtra("id", fbAuth.currentUser?.email)
-                startActivity(intent)
-
-            }else{
-                showMessage(view,"Error: ${task.exception?.message}")
-            }
+        but_fui_sign_in_.setOnClickListener({
+            if (!isUserSignedIn) signIn()
         })
 
+        but_fsdk_sign_in_.setOnClickListener({startActivity(
+                Intent(PhoneAuthActivity@this, PhoneAuthWithSdk::class.java))})
     }
 
-    fun showMessage(view:View, message: String){
-        Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE).setAction("Action", null).show()
+
+    private fun signIn(){
+        val params = Bundle()
+        params.putString(AuthUI.EXTRA_DEFAULT_COUNTRY_CODE, "ng")
+        params.putString(AuthUI.EXTRA_DEFAULT_NATIONAL_NUMBER, "23456789")
+
+        val phoneConfigWithDefaultNumber = AuthUI.IdpConfig.Builder(AuthUI.PHONE_VERIFICATION_PROVIDER)
+                .setParams(params)
+                .build()
+
+        startActivityForResult(
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setAvailableProviders(
+                                Arrays.asList(phoneConfigWithDefaultNumber))
+                        .build(),
+                RC_SIGN_IN)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_signup, menu)
-        return true
+    fun signOut(){
+        AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener {
+                    // user is now signed out
+                    //todo:
+                    showSnackbar("sign out successful")
+                    finish()
+                }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        // RC_SIGN_IN is the request code you passed into startActivityForResult(...)
+        // when starting the sign in flow.
+
+        if (requestCode == RC_SIGN_IN) {
+            val response = IdpResponse.fromResultIntent(data)
+
+            when {
+                resultCode == Activity.RESULT_OK -> {
+                    // Successfully signed in
+                    showSnackbar("SignIn successful")
+                    startActivity(Intent(PhoneAuthActivity@this,  SignedInActivity::class.java))
+                    finish()
+                }
+
+                response == null -> {
+                    // Sign in failed
+                    // User pressed back button
+                    showSnackbar("Sign in cancelled")
+                    return
+                }
+
+                response.errorCode == ErrorCodes.NO_NETWORK -> {
+                    // Sign in failed
+                    //No Internet Connection
+                    showSnackbar("No Internet connection")
+                    return
+                }
+
+                response.errorCode == ErrorCodes.UNKNOWN_ERROR -> {
+                    // Sign in failed
+                    //Unknown Error
+                    showSnackbar("Unknown error")
+                    return
+                }
+
+                else -> {
+                    showSnackbar("Unknown Response")
+                }
+
+            }
+            // Successfully signed in
+            /*if (resultCode == RESULT_OK) {
+                //todo:
+                showSnackbar("SignIn successful")
+//                startActivity()
+                finish()
+                return
+            } else {
+                // Sign in failed
+                if (response == null) {
+                    // User pressed back button
+                    showSnackbar("Sign in cancelled")
+                    return
+                }
+                if (response.errorCode == ErrorCodes.NO_NETWORK) {
+                    showSnackbar("No Internet connection")
+                    return
+                }
+                if (response.errorCode == ErrorCodes.UNKNOWN_ERROR) {
+                    showSnackbar("Unknown error")
+                    return
+                }
+            }
+            showSnackbar("Unknown Response");*/
         }
+    }
+
+    fun showSnackbar(message: String){
+        Snackbar.make(findViewById(android.R.id.content),
+                message, Snackbar.LENGTH_SHORT).show()
+    }
+
+    companion object {
+        const val RC_SIGN_IN = 123
     }
 }
