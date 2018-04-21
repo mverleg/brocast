@@ -1,21 +1,19 @@
 package nl.markv.brocast.brocast.signup
 
+import android.app.Activity
+import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ListView
+import android.widget.*
 import org.jetbrains.anko.AnkoLogger
 import kotlinx.android.synthetic.main.signed_in_titlebar.*
-import android.widget.ProgressBar
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 
-class SignedInActivity : AppCompatActivity(), AnkoLogger {
+class SignedInActivity : Activity(), AnkoLogger {
 
     private var userListView: ListView? = null
     private var userList: UserList? = null
@@ -55,7 +53,8 @@ class SignedInActivity : AppCompatActivity(), AnkoLogger {
                             progress.visibility = View.GONE;
                             updateUserlist()
                         } else {
-                            throw IllegalArgumentException("Could not retrieve users...")  // todo
+                            progress.visibility = View.GONE;
+                            Toast.makeText(getApplicationContext(), "Could not connect; using mock data", Toast.LENGTH_LONG).show();
                         }
                     }
                 })
