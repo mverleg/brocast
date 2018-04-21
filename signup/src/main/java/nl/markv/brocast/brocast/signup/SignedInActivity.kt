@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import nl.markv.brocast.brocast.signup.R.id.btn_groups
 
 class SignedInActivity : AppCompatActivity(), AnkoLogger {
 
@@ -53,11 +54,7 @@ class SignedInActivity : AppCompatActivity(), AnkoLogger {
                     }
                 })
     }
-
-
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userList.all().map{it.name}.toList())
-        userListView!!.adapter = adapter
-
+    
     fun updateUserlist() {
         if (userList == null) {
             return
