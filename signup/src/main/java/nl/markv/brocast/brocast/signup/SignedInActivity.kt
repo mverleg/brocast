@@ -13,7 +13,6 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
-import nl.markv.brocast.brocast.signup.R.id.btn_groups
 
 class SignedInActivity : AppCompatActivity(), AnkoLogger {
 
@@ -34,7 +33,7 @@ class SignedInActivity : AppCompatActivity(), AnkoLogger {
     }
 
     fun loadUsers() {
-        val progress = findViewById(R.id.progress_load_users) as ProgressBar
+        val progress = findViewById<ProgressBar>(R.id.progress_load_users)
         progress.visibility = View.VISIBLE
         val db = FirebaseFirestore.getInstance()
         db.collection("users")
@@ -42,14 +41,16 @@ class SignedInActivity : AppCompatActivity(), AnkoLogger {
                 .get()
                 .addOnCompleteListener(object : OnCompleteListener<QuerySnapshot> {
                     override fun onComplete(task: Task<QuerySnapshot>) {
-                        if (task.isSuccessful()) {
-                            userList = UserList(task.getResult().map {
+                        if (task.isSuccessful) {
+                            userList = UserList(task.result.map {
                                 User(it.id, it.data["displayName"] as String)
                             }.toList())
-                            progress.visibility = View.GONE;
+                            progress.visibility = View.GONE
                             updateUserlist()
-                        } else {
-                            throw IllegalArgumentException("Could not retrieve users...")  // todo
+                        } else { // todo
+                            userList = UserList.mockAll()
+                            progress.visibility = View.GONE
+                            updateUserlist()
                         }
                     }
                 })
@@ -59,9 +60,9 @@ class SignedInActivity : AppCompatActivity(), AnkoLogger {
         if (userList == null) {
             return
         }
-        this.userListView = findViewById(R.id.user_list_view) as ListView
+        this.userListView = findViewById<ListView>(R.id.user_list_view)
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userList!!.all().map{it.name}.toList())
-        userListView!!.setAdapter(adapter)
+        userListView!!.adapter = adapter
 
     }
 }
