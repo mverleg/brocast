@@ -11,3 +11,4 @@
 .externalNativeBuild
 node_modules/
 *.log
+gradle/
