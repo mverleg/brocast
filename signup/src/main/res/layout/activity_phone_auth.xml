@@ -30,5 +30,10 @@
         android:elevation="3dp"
         android:text="SIGN IN SDK"
         />
+    <Button
+            android:text="Debug"
+            android:layout_width="match_parent"
+            android:layout_height="23dp" android:id="@+id/btn_debug_bypass" tools:text="Debug"
+            android:textAppearance="@android:style/TextAppearance"/>
 
 </LinearLayout>
