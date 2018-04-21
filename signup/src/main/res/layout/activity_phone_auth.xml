@@ -8,18 +8,6 @@
               tools:context=".PhoneAuthActivity">
 
     <Button
-            android:id="@+id/but_fui_sign_in_"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="42dp"
-            android:layout_marginBottom="24dp"
-            android:textSize="18dp"
-            android:textColor="#ffffff"
-            android:elevation="3dp"
-            android:text="SIGN IN UI"
-    />
-
-    <Button
             android:id="@+id/but_fsdk_sign_in_"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

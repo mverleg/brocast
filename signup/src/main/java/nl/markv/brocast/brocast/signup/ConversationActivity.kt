@@ -15,16 +15,6 @@ class ConversationActivity : AppCompatActivity(), AnkoLogger {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_conversation)
         val userId = getIntent().getExtras()!!["userId"]!!
-        var userName = ""
-        if (userId.equals("1")) {
-            userName = "Jasper"
-        } else if (userId.equals("2")) {
-            userName = "Mark"
-        } else if (userId.equals("3")) {
-            userName = "Sander"
-        } else {
-            userName = "Yoeri"
-        }
-        Toast.makeText(getApplicationContext(), "You are emoji-ing with user ${userName}", Toast.LENGTH_LONG).show()
+        Toast.makeText(getApplicationContext(), "You are emoji-ing with user ${userId}", Toast.LENGTH_LONG).show()
     }
 }

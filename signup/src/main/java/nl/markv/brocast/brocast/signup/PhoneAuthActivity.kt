@@ -24,10 +24,6 @@ class PhoneAuthActivity : AppCompatActivity(), AnkoLogger {
 
         info("Start app")
 
-        but_fui_sign_in_.setOnClickListener({
-            if (!isUserSignedIn) signIn()
-        })
-
         btn_debug_bypass.setOnClickListener({
             val intent = Intent(this, SignedInActivity::class.java)
             startActivity(intent)
