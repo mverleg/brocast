@@ -13,6 +13,7 @@ import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import nl.markv.brocast.brocast.signup.R
 import kotlinx.android.synthetic.main.activity_phone_auth_with_sdk.*
+import nl.markv.brocast.brocast.signup.R.id.*
 import nl.markv.brocast.brocast.signup.SignedInActivity
 import java.util.concurrent.TimeUnit
 import org.jetbrains.anko.info
