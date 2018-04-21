@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".SignedInActivity">
+
+    <include layout="@layout/signed_in_titlebar"/>
+
+    <ListView
+        android:id="@+id/group_list_view"
+        android:layout_width="328dp"
+        android:layout_height="382dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@layout/signed_in_titlebar"
+        app:layout_constraintTop_toBottomOf="@layout/signed_in_titlebar" >
+
+    </ListView>
+
+</android.support.constraint.ConstraintLayout>
