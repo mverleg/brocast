@@ -9,12 +9,16 @@ class ManagerPath {
         this.retrievePhoneNumbers = "retrievePhoneNumbers";
         this.serverFunctions = "server";
         this.serverFunctionsAddFakeUsers = "fakeUsers";
+        this.serverFunctionsAddFakeGroups = "fakeGroups";
     }
     getPathToServerFunctions() {
         return this.serverFunctions;
     }
     getPathFakeUsers() {
         return this.serverFunctionsAddFakeUsers;
+    }
+    getPathFakeGroups() {
+        return this.serverFunctionsAddFakeGroups;
     }
     getPathToUsersCollection() {
         return this.users;
@@ -24,7 +28,10 @@ class ManagerPath {
     }
     getPathToUserDocument(uid) {
         const paths = [this.users, uid];
-        return ManagerPathSeperator_1.managerPathSeperator.addSlashBetweenPaths(paths);
+        console.log("paths: " + paths);
+        const test = ManagerPathSeperator_1.managerPathSeperator.addSlashBetweenPaths(paths);
+        console.log("test" + test);
+        return test;
     }
     getPathToChatDocument(uid) {
         const paths = [this.chats, uid];

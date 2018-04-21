@@ -8,6 +8,12 @@ class Test {
             text += possible.charAt(Math.floor(Math.random() * possible.length));
         return text;
     }
+    generateFakeUser() {
+        return {
+            "tsCreated": Date.now(),
+            "displayName": this.generateRandomString(25)
+        };
+    }
 }
 exports.test = new Test();
 //# sourceMappingURL=Test.js.map

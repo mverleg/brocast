@@ -7,20 +7,6 @@ const ManagerDataExtractor_1 = require("./Managers/ManagerDataExtractor");
 const Test_1 = require("./Test/Test");
 admin.initializeApp();
 const db = admin.firestore();
-exports.fillDatabaseWithFakeUsers = functions.firestore.document(`${ManagerPath_1.managerPath.getPathToServerFunctions()}/${ManagerPath_1.managerPath.getPathFakeUsers()}`).onCreate((snap, context) => {
-    var promises = [];
-    const ownId = snap.id;
-    const dbPathToUserCollection = ManagerPath_1.managerPath.getPathToUsersCollection();
-    promises.push(db.collection(ManagerPath_1.managerPath.getPathToServerFunctions()).doc(ownId).delete());
-    for (var i = 0; i < 20; i++) {
-        const name = Test_1.test.generateRandomString(25);
-        promises.push(db.collection(dbPathToUserCollection).doc().set({
-            "tsCreated": Date.now(),
-            "displayName": name
-        }));
-    }
-    return Promise.all(promises);
-});
 exports.firstLogin = functions.auth.user().onCreate((user) => {
     const dbPath = ManagerPath_1.managerPath.getPathToUserDocument(user.uid);
     const userObject = ManagerDataExtractor_1.managerDataExtractor.getDataFromFirstLogin(user);
@@ -42,7 +28,19 @@ exports.createNewChat = functions.firestore.document(`${ManagerPath_1.managerPat
     }
     return Promise.all(promises);
 });
-// exports.getUsersForTelephoneNumbers = functions.firestore.document(`${managerPath.getPathToRetrievePhoneNumbers()}/{documentId`).onCreate((snap, context) => { 
-//     console.log("...")
-// })
+exports.createNewChatTest = functions.firestore.document(`${ManagerPath_1.managerPath.getPathToServerFunctions()}/${ManagerPath_1.managerPath.getPathToServerFunctions()}`).onCreate((snap, context) => {
+    const name = Test_1.test.generateRandomString(25);
+    const fakeUsers = [];
+});
+exports.fillDatabaseWithFakeUsers = functions.firestore.document(`${ManagerPath_1.managerPath.getPathToServerFunctions()}/${ManagerPath_1.managerPath.getPathFakeUsers()}`).onCreate((snap, context) => {
+    var promises = [];
+    const ownId = snap.id;
+    const dbPathToUserCollection = ManagerPath_1.managerPath.getPathToUsersCollection();
+    promises.push(db.collection(ManagerPath_1.managerPath.getPathToServerFunctions()).doc(ownId).delete());
+    for (var i = 0; i < 20; i++) {
+        const user = Test_1.test.generateFakeUser();
+        promises.push(db.collection(dbPathToUserCollection).doc().set(user));
+    }
+    return Promise.all(promises);
+});
 //# sourceMappingURL=index.js.map

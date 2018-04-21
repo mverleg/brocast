@@ -32,7 +32,10 @@ class ManagerPath {
 
     getPathToUserDocument(uid: string): string {
         const paths: string[] = [this.users, uid]
-        return managerPathSeperator.addSlashBetweenPaths(paths)
+        console.log("paths: " + paths)
+        const test = managerPathSeperator.addSlashBetweenPaths(paths);
+        console.log("test" + test)
+        return test; 
     }
 
     getPathToChatDocument(uid: string): string { 
