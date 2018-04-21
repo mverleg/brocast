@@ -1,38 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:id="@+id/relativeLayout"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent"
-                                             android:padding="16dp"
-                                             tools:context=".SignedInActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".SignedInActivity">
 
 
-    <include layout="@layout/signed_in_titlebar"/>
+    <include
+        android:id="@+id/titlebar"
+        layout="@layout/signed_in_titlebar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="16dp" />
 
     <ProgressBar
-            style="?android:attr/progressBarStyle"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/progress_load_users"
-            app:layout_constraintEnd_toEndOf="@+id/user_list_view"
-            app:layout_constraintTop_toTopOf="@+id/user_list_view"
-            app:layout_constraintBottom_toBottomOf="@+id/user_list_view"
-            app:layout_constraintStart_toStartOf="@+id/user_list_view"
-            android:visibility="visible"/>
-  
+        android:id="@+id/progress_load_users"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <ListView
-            android:id="@+id/user_list_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/users"
-            app:layout_constraintTop_toBottomOf="@+id/groups"
-            app:layout_constraintVertical_bias="1.0">
+        android:id="@+id/user_list_view"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titlebar"
+        app:layout_constraintVertical_bias="1.0">
 
     </ListView>
 

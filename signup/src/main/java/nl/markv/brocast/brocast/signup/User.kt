@@ -9,8 +9,24 @@ class UserList(val users: List<User>) {
         return users
     }
 
+    companion object {
+        fun mockAll(): UserList {
+            return UserList(listOf(
+                    User("1", "Jasper")
+                    , User("2", "Mark")
+                    , User("3", "Sander")
+                    , User("4", "Yoeri")
+            ))
+        }
+    }
+
     // Get users matched by search query
     fun search(query: String): List<User> {
         return all().filter{ query in it.name }.toList()
+    }
+
+    /// Get specific element in the list
+    fun get(index: Int): User {
+        return users[index]
     }
 }
