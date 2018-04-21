@@ -11,4 +11,3 @@
 .externalNativeBuild
 node_modules/
 *.log
-
