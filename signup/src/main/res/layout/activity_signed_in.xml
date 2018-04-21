@@ -10,13 +10,22 @@
 
 
     <include
-        android:id="@+id/titlebar"
-        layout="@layout/signed_in_titlebar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="16dp" />
+            android:id="@+id/titlebar"
+            layout="@layout/signed_in_titlebar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"/>
+
+    <include
+            android:id="@+id/search_users"
+            layout="@layout/fragment_search_contact"
+            android:layout_width="0dp"
+            android:layout_height="83dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/titlebar"/>
 
     <ProgressBar
         android:id="@+id/progress_load_users"
@@ -33,17 +42,15 @@
 
 
     <ListView
-        android:id="@+id/user_list_view"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titlebar"
-        app:layout_constraintVertical_bias="1.0">
+            android:id="@+id/user_list_view"
+            android:layout_width="wrap_content"
+            android:layout_height="278dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/search_users">
 
     </ListView>
 
