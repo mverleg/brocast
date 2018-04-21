@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "382913917790",
+    "firebase_url": "https://brocast-1e6a4.firebaseio.com",
+    "project_id": "brocast-1e6a4",
+    "storage_bucket": "brocast-1e6a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:382913917790:android:db46a1721f4d6344",
+        "android_client_info": {
+          "package_name": "nl.markv.brocast"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "382913917790-uuprpk3e9rql6j9kaev3dmtp3tnshavu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAN2do9pmqvn3eBTTqP1hRHqlbGw-wClac"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
