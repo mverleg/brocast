@@ -54,10 +54,6 @@ class SignedInActivity : AppCompatActivity(), AnkoLogger {
                 })
     }
 
-
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userList.all().map{it.name}.toList())
-        userListView!!.adapter = adapter
-
     fun updateUserlist() {
         if (userList == null) {
             return
