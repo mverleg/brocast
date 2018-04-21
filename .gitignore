@@ -9,4 +9,4 @@
 /build
 /captures
 .externalNativeBuild
-firebase/node_modules/
+node_modules/
