@@ -1,30 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     tools:context=".SignupActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hi"
-        android:textSize="72sp"
-        android:layout_centerInParent="true"
-        />
+    <Button
+        android:id="@+id/users"
+        android:layout_width="166dp"
+        android:layout_height="51dp"
+        android:text="Users"
+        app:layout_constraintEnd_toStartOf="@+id/groups"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/groups"
+        android:layout_width="170dp"
+        android:layout_height="51dp"
+        android:text="Groups"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/users"
+        tools:layout_editor_absoluteY="16dp" />
 
     <Button
         android:id="@+id/but_sign_out"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
         android:layout_marginBottom="24dp"
-        android:textSize="18dp"
-        android:textColor="#ffffff"
+        android:layout_marginTop="42dp"
         android:elevation="3dp"
         android:text="SIGN OUT"
-        android:layout_alignParentBottom="true"
-        />
-</RelativeLayout>
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbarStyle="insideOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="83dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="left" />
+
+</android.support.constraint.ConstraintLayout>
