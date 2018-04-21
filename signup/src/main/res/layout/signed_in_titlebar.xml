@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/activity_signed_in">
+
+    <Button
+        android:id="@+id/btn_users"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="Users"
+        app:layout_constraintEnd_toStartOf="@+id/btn_groups"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_groups"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="Groups"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_users"
+        app:layout_constraintTop_toTopOf="@+id/btn_users" />
+
+
+</android.support.constraint.ConstraintLayout>
