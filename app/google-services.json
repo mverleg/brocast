@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "792094902545",
-    "firebase_url": "https://brocast-dcf49.firebaseio.com",
-    "project_id": "brocast-dcf49",
-    "storage_bucket": "brocast-dcf49.appspot.com"
+    "project_number": "977008625415",
+    "firebase_url": "https://broc-6f707.firebaseio.com",
+    "project_id": "broc-6f707",
+    "storage_bucket": "broc-6f707.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:792094902545:android:bce78ee5461434d6",
+        "mobilesdk_app_id": "1:977008625415:android:bce78ee5461434d6",
         "android_client_info": {
           "package_name": "nl.markv.brocast.brocast.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "792094902545-1ve67ctms1ohqh0tto54ub0sga0j35sb.apps.googleusercontent.com",
+          "client_id": "977008625415-02h5fjsj1u2875902t6pvslt1d4n0bvk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "nl.markv.brocast.brocast.app",
@@ -23,13 +23,13 @@
           }
         },
         {
-          "client_id": "792094902545-v3s4hghsonm1i6lhqk75alv1mnev3dde.apps.googleusercontent.com",
+          "client_id": "977008625415-jah6nsv79i6v6v6tumofrv294vk9naf1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAh5pCvZgeJZGXVxnMe92jHKLBdVI-d5AI"
+          "current_key": "AIzaSyBKs6oUUMsOrulm9Cm7NlCkhxvJJGqgExc"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "792094902545-v3s4hghsonm1i6lhqk75alv1mnev3dde.apps.googleusercontent.com",
+              "client_id": "977008625415-jah6nsv79i6v6v6tumofrv294vk9naf1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
