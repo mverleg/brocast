@@ -1,7 +1,6 @@
 package nl.markv.brocast.brocast.signup
 
 import android.app.Activity
-import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -53,7 +52,6 @@ class SignedInActivity : Activity(), AnkoLogger {
                             progress.visibility = View.GONE
                             updateUserlist()
                         } else {
-                            progress.visibility = View.GONE;
                             Toast.makeText(getApplicationContext(), "Could not connect; using mock data", Toast.LENGTH_LONG).show();
                             userList = UserList.mockAll() // TODO
                             progress.visibility = View.GONE

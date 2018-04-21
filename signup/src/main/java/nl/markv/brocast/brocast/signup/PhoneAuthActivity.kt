@@ -35,9 +35,6 @@ class PhoneAuthActivity : AppCompatActivity(), AnkoLogger {
 
         but_fsdk_sign_in_.setOnClickListener({startActivity(
                 Intent(PhoneAuthActivity@this, PhoneAuthWithSdk::class.java))})
-
-        btn_sander.setOnClickListener({startActivity(
-                Intent(PhoneAuthActivity@this, ConversationActivity::class.java))})
     }
 
 
