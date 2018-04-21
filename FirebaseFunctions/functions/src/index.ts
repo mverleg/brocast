@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from "firebase-admin";
 import { managerPath } from './Managers/ManagerPath';
 import { managerDataExtractor } from './Managers/ManagerDataExtractor';
+import { test } from './Test/Test'
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -9,10 +10,13 @@ const db = admin.firestore();
 exports.fillDatabaseWithFakeUsers = functions.firestore.document(`${managerPath.getPathToServerFunctions()}/${managerPath.getPathFakeUsers()}`).onCreate((snap, context) => { 
 
     var promises = [];
+    const ownId = snap.id;
     const dbPathToUserCollection = managerPath.getPathToUsersCollection();
 
+    promises.push(db.collection(managerPath.getPathToServerFunctions()).doc(ownId).delete())
+
     for (var i = 0; i < 100; i++) { 
-        const name = Test.generateRandomString(25);
+        const name = test.generateRandomString(25);
         promises.push(db.collection(dbPathToUserCollection).doc().set({
             "tsCreated": Date.now(),
             "displayName": name
