@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import nl.markv.brocast.brocast.signup.R.id.btn_groups
 
 class SignedInActivity : AppCompatActivity(), AnkoLogger {
 
