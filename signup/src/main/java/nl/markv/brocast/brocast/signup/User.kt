@@ -13,4 +13,8 @@ class UserList() {
                 User("4", "Sander")
         )
     }
+
+    fun search(query: String): List<User> {
+        return all().filter{ query in it.name }.toList()
+    }
 }
