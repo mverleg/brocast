@@ -20,10 +20,20 @@ This is an entry for the 2018 Keylane Hackathon in Utrecht!
 Install
 -------------------------------
 
-* Install nodejs/npm
-* Go to /firebase/functions
+* Install nodejs and npm
+* Go to directory /firebase/functions
 * ``npm i``
 * ``npm i -g firebase-tools``
 * ``firebase login``
-* ``firebase deploy --only database``
+
+When changing any Firebase rules, to deploy:
+
+    ``firebase deploy --only firestore:rules``
+
+To launch the app from Android Studio:
+
+* Install an emulator or use a phone of API level 22 or higher
+* Run configuration
+* Module: app
+* Run
 
