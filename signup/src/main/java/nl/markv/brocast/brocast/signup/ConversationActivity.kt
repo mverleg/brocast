@@ -25,6 +25,6 @@ class ConversationActivity : AppCompatActivity(), AnkoLogger {
         } else {
             userName = "Yoeri"
         }
-        Toast.makeText(getApplicationContext(), "You are emoji-ing with user ${userName}", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "You are emoji-ing with user ${userName}", Toast.LENGTH_LONG).show()
     }
 }
