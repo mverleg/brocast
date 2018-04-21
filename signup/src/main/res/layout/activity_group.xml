@@ -11,7 +11,7 @@
     <include layout="@layout/signed_in_titlebar"/>
 
     <ListView
-        android:id="@+id/user_list_view"
+        android:id="@+id/group_list_view"
         android:layout_width="328dp"
         android:layout_height="382dp"
         android:layout_marginTop="8dp"
@@ -20,8 +20,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@layout/signed_in_titlebar"
         app:layout_constraintTop_toBottomOf="@layout/signed_in_titlebar" >
-
-        <!--<include layout="@layout/list_item_user"/>-->
 
     </ListView>
 

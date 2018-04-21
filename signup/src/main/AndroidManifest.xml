@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".PhoneAuthWithSdk" />
-        <activity android:name=".SignedInActivity"></activity>
+        <activity android:name=".SignedInActivity"/>
+        <activity android:name=".GroupActivity"/>
     </application>
 
 </manifest>

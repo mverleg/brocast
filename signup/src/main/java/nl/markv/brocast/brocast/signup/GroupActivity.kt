@@ -7,22 +7,23 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import kotlinx.android.synthetic.main.signed_in_titlebar.*
 
-class SignedInActivity : AppCompatActivity() {
+class GroupActivity : AppCompatActivity() {
 
     private var userListView: ListView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signed_in)
+        setContentView(R.layout.activity_group)
 
-        btn_groups.setOnClickListener({
-            val intent = Intent(this, GroupActivity::class.java)
+        btn_users.setOnClickListener({
+            val intent = Intent(this, SignedInActivity::class.java)
             startActivity(intent)
         })
 
-        this.userListView = findViewById(R.id.user_list_view) as ListView
 
-        val userList: UserList = UserList()
+        this.userListView = findViewById(R.id.group_list_view) as ListView
+
+        val userList: GroupList = GroupList()
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userList.all().map{it.name}.toList())
         userListView!!.adapter = adapter
