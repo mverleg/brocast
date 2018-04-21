@@ -9,7 +9,8 @@
                                              tools:context=".SignedInActivity">
 
 
-    <include layout="@layout/signed_in_titlebar"/>
+    <include layout="@layout/signed_in_titlebar"
+        android:id="@+id/titlebar"/>
 
     <ProgressBar
             style="?android:attr/progressBarStyle"
@@ -18,8 +19,8 @@
             android:id="@+id/progress_load_users"
             app:layout_constraintEnd_toEndOf="@+id/user_list_view"
             app:layout_constraintTop_toTopOf="@+id/user_list_view"
-            app:layout_constraintBottom_toBottomOf="@+id/user_list_view"
-            app:layout_constraintStart_toStartOf="@+id/user_list_view"
+            app:layout_constraintBottom_toBottomOf="@+id/titlebar"
+            app:layout_constraintStart_toStartOf="@+id/titlebar"
             android:visibility="visible"/>
   
 
@@ -30,8 +31,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/users"
-            app:layout_constraintTop_toBottomOf="@+id/groups"
+            app:layout_constraintStart_toEndOf="@+id/titlebar"
+            app:layout_constraintTop_toBottomOf="@+id/titlebar"
             app:layout_constraintVertical_bias="1.0">
 
     </ListView>
