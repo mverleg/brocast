@@ -16,11 +16,8 @@ exports.fillDatabaseWithFakeUsers = functions.firestore.document(`${managerPath.
     promises.push(db.collection(managerPath.getPathToServerFunctions()).doc(ownId).delete())
 
     for (var i = 0; i < 20; i++) { 
-        const name = test.generateRandomString(25);
-        promises.push(db.collection(dbPathToUserCollection).doc().set({
-            "tsCreated": Date.now(),
-            "displayName": name
-        }))
+        const user = test.generateFakeUser();
+        promises.push(db.collection(dbPathToUserCollection).doc().set(user))
     }
 
     return Promise.all(promises);
@@ -57,8 +54,13 @@ exports.createNewChat = functions.firestore.document(`${managerPath.getPathToCre
     return Promise.all(promises);
 })
 
-// exports.getUsersForTelephoneNumbers = functions.firestore.document(`${managerPath.getPathToRetrievePhoneNumbers()}/{documentId`).onCreate((snap, context) => { 
+exports.createNewChatTest = functions.firestore.document(`${managerPath.getPathToServerFunctions()}/${managerPath.getPathToServerFunctions()}`).onCreate((snap, context) => { 
 
-//     console.log("...")
+    const name = test.generateRandomString(25);
+    const fakeUsers = [];
 
-// })
+    for (var i = 0; i < 10; i++) { 
+
+    }
+
+})

@@ -8,6 +8,7 @@ class ManagerPath {
     private retrievePhoneNumbers: string = "retrievePhoneNumbers"
     private serverFunctions: string = "server"
     private serverFunctionsAddFakeUsers: string = "fakeUsers"
+    private serverFunctionsAddFakeGroups: string = "fakeGroups"
 
     getPathToServerFunctions(): string { 
         return this.serverFunctions;
@@ -15,6 +16,10 @@ class ManagerPath {
 
     getPathFakeUsers(): string { 
         return this.serverFunctionsAddFakeUsers;
+    }
+
+    getPathFakeGroups(): string { 
+        return this.serverFunctionsAddFakeGroups;
     }
 
     getPathToUsersCollection(): string { 

@@ -9,6 +9,13 @@ class Test {
         return text;
       }
 
+      generateFakeUser(): Object { 
+        return {
+          "tsCreated": Date.now(),
+          "displayName": this.generateRandomString(25)
+         }
+      }
+
 }
 
 export const test = new Test();

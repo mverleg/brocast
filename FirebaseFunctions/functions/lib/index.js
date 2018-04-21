@@ -12,7 +12,7 @@ exports.fillDatabaseWithFakeUsers = functions.firestore.document(`${ManagerPath_
     const ownId = snap.id;
     const dbPathToUserCollection = ManagerPath_1.managerPath.getPathToUsersCollection();
     promises.push(db.collection(ManagerPath_1.managerPath.getPathToServerFunctions()).doc(ownId).delete());
-    for (var i = 0; i < 100; i++) {
+    for (var i = 0; i < 20; i++) {
         const name = Test_1.test.generateRandomString(25);
         promises.push(db.collection(dbPathToUserCollection).doc().set({
             "tsCreated": Date.now(),
