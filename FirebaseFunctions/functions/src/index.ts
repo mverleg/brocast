@@ -15,7 +15,7 @@ exports.fillDatabaseWithFakeUsers = functions.firestore.document(`${managerPath.
 
     promises.push(db.collection(managerPath.getPathToServerFunctions()).doc(ownId).delete())
 
-    for (var i = 0; i < 100; i++) { 
+    for (var i = 0; i < 20; i++) { 
         const name = test.generateRandomString(25);
         promises.push(db.collection(dbPathToUserCollection).doc().set({
             "tsCreated": Date.now(),
