@@ -1,8 +1,10 @@
 import * as functions from 'firebase-functions';
+import * as admin from "firebase-admin";
+import { managerPath } from './ManagerPath';
+const db = admin.database();
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+exports.firstLogin = functions.auth.user().onCreate((user) => { 
+
+   const dbPath = managerPath.getPathToUser(user.uid);
+asdasd
+})
