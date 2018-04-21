@@ -17,4 +17,13 @@ Context
 
 This is an entry for the 2018 Keylane Hackathon in Utrecht!
 
+Install
+-------------------------------
+
+* Install nodejs/npm
+* Go to /firebase/functions
+* ``npm i``
+* ``npm i -g firebase-tools``
+* ``firebase login``
+* ``firebase deploy --only database``
 
