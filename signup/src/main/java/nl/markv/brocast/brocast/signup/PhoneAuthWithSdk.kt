@@ -15,8 +15,10 @@ import nl.markv.brocast.brocast.signup.R
 import kotlinx.android.synthetic.main.activity_phone_auth_with_sdk.*
 import nl.markv.brocast.brocast.signup.SignedInActivity
 import java.util.concurrent.TimeUnit
+import org.jetbrains.anko.info
+import org.jetbrains.anko.AnkoLogger
 
-class PhoneAuthWithSdk : AppCompatActivity() {
+class PhoneAuthWithSdk : AppCompatActivity(), AnkoLogger {
 
     private val KEY_VERIFY_IN_PROGRESS = "key_verify_in_progress"
 
@@ -90,6 +92,7 @@ class PhoneAuthWithSdk : AppCompatActivity() {
                 mVerificationInProgress = false
                 // [END_EXCLUDE]
 
+                info("failed login: $e")
                 if (e is FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
                     showSnackbar("Invalid phone number.")
@@ -140,7 +143,8 @@ class PhoneAuthWithSdk : AppCompatActivity() {
 
     private fun startPhoneNumberVerification(phoneNumber: String) {
         // [START start_phone_auth]
-
+        info("test $phoneNumber")
+        info("test Callbacks $mCallbacks")
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 phoneNumber, // Phone number to verify
                 60,             // Timeout duration
