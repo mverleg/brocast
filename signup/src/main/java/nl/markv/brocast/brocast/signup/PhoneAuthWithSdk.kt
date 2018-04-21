@@ -10,39 +10,8 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import nl.markv.brocast.brocast.signup.R
-import nl.markv.brocast.brocast.signup.R.id.*
-
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Marketplace
-Explore
-@Grabot
-Sign out
-1
-0 0 emayoung/FirebasePhoneAuthKotlin
-Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
-FirebasePhoneAuthKotlin/app/src/main/java/com/example/root/firebasephoneauthkotlin/PhoneAuthWithSdk.kt
-d6aa7e1  on 21 Jan
-@emayoung emayoung Initial commit
-
-225 lines (188 sloc)  8.89 KB
-package com.example.root.firebasephoneauthkotlin
-
-import android.content.Intent
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.text.TextUtils
-import com.google.firebase.FirebaseException
-import com.google.firebase.FirebaseTooManyRequestsException
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.activity_phone_auth_with_sdk.*
+import nl.markv.brocast.brocast.signup.SignedInActivity
 import java.util.concurrent.TimeUnit
 
 class PhoneAuthWithSdk : AppCompatActivity() {

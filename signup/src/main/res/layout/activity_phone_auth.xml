@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="16dp"
-    tools:context=".SignupActivity">
+    tools:context=".PhoneAuthActivity">
 
     <Button
         android:id="@+id/but_fui_sign_in_"
