@@ -1,3 +1,5 @@
+package nl.markv.brocast.brocast.signup
+
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
