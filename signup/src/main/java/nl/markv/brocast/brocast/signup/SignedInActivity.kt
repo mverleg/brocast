@@ -4,21 +4,47 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 
 class SignedInActivity : AppCompatActivity() {
 
     private var userListView: ListView? = null
+    private var userList: UserList? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signed_in)
+        updateUserlist()
+    }
 
+    fun loadUsers() {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("users")
+                // .whereEqualTo("is_contact", true)
+                .get()
+                .addOnCompleteListener(object : OnCompleteListener<QuerySnapshot> {
+                    override fun onComplete(task: Task<QuerySnapshot>) {
+                        if (task.isSuccessful()) {
+                            userList = UserList(task.getResult().map {
+                                User(it.get("uid") as String, it.get("displayName") as String)
+                            }.toList())
+                            updateUserlist()
+                        } else {
+                            throw IllegalArgumentException("Could not retrieve users...")  // todo
+                        }
+                    }
+                })
+    }
 
+    fun updateUserlist() {
+        if (userList == null) {
+            return
+        }
         this.userListView = findViewById(R.id.user_list_view) as ListView
-
-        val userList: UserList = UserList()
-
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userList.all().map{it.name}.toList())
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userList!!.all().map{it.name}.toList())
         userListView!!.setAdapter(adapter)
     }
 }
