@@ -10,9 +10,11 @@ import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_phone_auth.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import java.util.*
 
-class PhoneAuthActivity : AppCompatActivity() {
+class PhoneAuthActivity : AppCompatActivity(), AnkoLogger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,16 +22,19 @@ class PhoneAuthActivity : AppCompatActivity() {
 
         val isUserSignedIn = FirebaseAuth.getInstance().currentUser != null
 
+        info("Start app")
+
         but_fui_sign_in_.setOnClickListener({
             if (!isUserSignedIn) signIn()
         })
 
-//        but_fsdk_sign_in_.setOnClickListener({startActivity(
-//                Intent(PhoneAuthActivity@this, PhoneAuthWithSdk::class.java))})
+        but_fsdk_sign_in_.setOnClickListener({startActivity(
+                Intent(PhoneAuthActivity@this, PhoneAuthWithSdk::class.java))})
     }
 
 
     private fun signIn(){
+        info("Sign in")
         val params = Bundle()
         params.putString(AuthUI.EXTRA_DEFAULT_COUNTRY_CODE, "ng")
         params.putString(AuthUI.EXTRA_DEFAULT_NATIONAL_NUMBER, "23456789")
@@ -48,6 +53,7 @@ class PhoneAuthActivity : AppCompatActivity() {
     }
 
     fun signOut(){
+        info("Sign out")
         AuthUI.getInstance()
                 .signOut(this)
                 .addOnCompleteListener {
@@ -66,6 +72,7 @@ class PhoneAuthActivity : AppCompatActivity() {
         if (requestCode == RC_SIGN_IN) {
             val response = IdpResponse.fromResultIntent(data)
 
+            info("response: $response")
             when {
                 resultCode == Activity.RESULT_OK -> {
                     // Successfully signed in
