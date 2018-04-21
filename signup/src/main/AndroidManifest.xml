@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PhoneAuthWithSdk" />
+        <activity android:name=".ConversationActivity" />
         <activity android:name=".SignedInActivity"></activity>
     </application>
 

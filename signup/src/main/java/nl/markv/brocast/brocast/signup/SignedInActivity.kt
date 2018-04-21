@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import org.jetbrains.anko.AnkoLogger
 
-class SignedInActivity : AppCompatActivity() {
+class SignedInActivity : AppCompatActivity(), AnkoLogger {
 
     private var userListView: ListView? = null
 
