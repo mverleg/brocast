@@ -13,11 +13,12 @@ class ManagerPathSeperator {
     removeLastSlash(path: string): string { 
         const lastCharacter = path.substr(path.length - 1);
 
+        var finalPath = path;
         if (lastCharacter == "/") { 
-            path = path.substring(0, path.length - 1); 
+            finalPath = path.substring(0, path.length - 1); 
         }
 
-        return path;
+        return finalPath;
     }
     
 }

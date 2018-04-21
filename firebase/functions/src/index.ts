@@ -6,6 +6,22 @@ import { managerDataExtractor } from './Managers/ManagerDataExtractor';
 admin.initializeApp();
 const db = admin.firestore();
 
+exports.fillDatabaseWithFakeUsers = functions.firestore.document(`${managerPath.getPathToServerFunctionsFakeUsers()}`).onCreate((snap, context) => { 
+
+    var promises = [];
+    const dbPathToUserCollection = managerPath.getPathToUsersCollection();
+
+    for (var i = 0; i < 100; i++) { 
+        const name = Test.generateRandomString(25);
+        promises.push(db.collection(dbPathToUserCollection).doc().set({
+            "tsCreated": Date.now(),
+            "displayName": name
+        }))
+    }
+
+    return Promise.all(promises);
+})
+
 exports.firstLogin = functions.auth.user().onCreate((user) => { 
 
    const dbPath = managerPath.getPathToUserDocument(user.uid);
@@ -27,7 +43,7 @@ exports.createNewChat = functions.firestore.document(`${managerPath.getPathToCre
     promises.push(db.doc(pathToThisId).delete());
 
     for (const userUid in usersUidsInGroup) { 
-
+        
         const userObject = managerDataExtractor.getDataFromUserForAddingToNewChat(userUid);
         const pathToChatUser = managerPath.getPathToChatUserDocument(snap.id, userUid)
 
@@ -35,4 +51,10 @@ exports.createNewChat = functions.firestore.document(`${managerPath.getPathToCre
     }
 
     return Promise.all(promises);
+})
+
+exports.getUsersForTelephoneNumbers = functions.firestore.document(`${managerPath.getPathToRetrievePhoneNumbers}/{documentId`).onCreate((snap, context) => { 
+
+    console.log("...")
+
 })
