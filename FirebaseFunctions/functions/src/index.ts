@@ -7,22 +7,6 @@ import { test } from './Test/Test'
 admin.initializeApp();
 const db = admin.firestore();
 
-exports.fillDatabaseWithFakeUsers = functions.firestore.document(`${managerPath.getPathToServerFunctions()}/${managerPath.getPathFakeUsers()}`).onCreate((snap, context) => { 
-
-    var promises = [];
-    const ownId = snap.id;
-    const dbPathToUserCollection = managerPath.getPathToUsersCollection();
-
-    promises.push(db.collection(managerPath.getPathToServerFunctions()).doc(ownId).delete())
-
-    for (var i = 0; i < 20; i++) { 
-        const user = test.generateFakeUser();
-        promises.push(db.collection(dbPathToUserCollection).doc().set(user))
-    }
-
-    return Promise.all(promises);
-})
-
 exports.firstLogin = functions.auth.user().onCreate((user) => { 
 
    const dbPath = managerPath.getPathToUserDocument(user.uid);
@@ -59,8 +43,20 @@ exports.createNewChatTest = functions.firestore.document(`${managerPath.getPathT
     const name = test.generateRandomString(25);
     const fakeUsers = [];
 
-    for (var i = 0; i < 10; i++) { 
+})
 
+exports.fillDatabaseWithFakeUsers = functions.firestore.document(`${managerPath.getPathToServerFunctions()}/${managerPath.getPathFakeUsers()}`).onCreate((snap, context) => { 
+
+    var promises = [];
+    const ownId = snap.id;
+    const dbPathToUserCollection = managerPath.getPathToUsersCollection();
+
+    promises.push(db.collection(managerPath.getPathToServerFunctions()).doc(ownId).delete())
+
+    for (var i = 0; i < 20; i++) { 
+        const user = test.generateFakeUser();
+        promises.push(db.collection(dbPathToUserCollection).doc().set(user))
     }
 
+    return Promise.all(promises);
 })

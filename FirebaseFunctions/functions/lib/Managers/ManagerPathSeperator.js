@@ -4,7 +4,7 @@ class ManagerPathSeperator {
     addSlashBetweenPaths(paths) {
         var finalPath = "";
         for (const path in paths) {
-            finalPath += path + "/";
+            finalPath += paths[path] + "/";
         }
         return finalPath;
     }
