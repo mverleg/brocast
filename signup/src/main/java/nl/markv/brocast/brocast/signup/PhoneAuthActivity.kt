@@ -10,6 +10,7 @@ import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_phone_auth.*
+import nl.markv.brocast.brocast.signup.R.id.but_fsdk_sign_in_
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import java.util.*
@@ -24,45 +25,8 @@ class PhoneAuthActivity : AppCompatActivity(), AnkoLogger {
 
         info("Start app")
 
-        btn_debug_bypass.setOnClickListener({
-            val intent = Intent(this, SignedInActivity::class.java)
-            startActivity(intent)
-        })
-
         but_fsdk_sign_in_.setOnClickListener({startActivity(
                 Intent(PhoneAuthActivity@this, PhoneAuthWithSdk::class.java))})
-    }
-
-
-    private fun signIn(){
-        info("Sign in")
-        val params = Bundle()
-        params.putString(AuthUI.EXTRA_DEFAULT_COUNTRY_CODE, "ng")
-        params.putString(AuthUI.EXTRA_DEFAULT_NATIONAL_NUMBER, "23456789")
-
-        val phoneConfigWithDefaultNumber = AuthUI.IdpConfig.Builder(AuthUI.PHONE_VERIFICATION_PROVIDER)
-                .setParams(params)
-                .build()
-
-        startActivityForResult(
-                AuthUI.getInstance()
-                        .createSignInIntentBuilder()
-                        .setAvailableProviders(
-                                Arrays.asList(phoneConfigWithDefaultNumber))
-                        .build(),
-                RC_SIGN_IN)
-    }
-
-    fun signOut(){
-        info("Sign out")
-        AuthUI.getInstance()
-                .signOut(this)
-                .addOnCompleteListener {
-                    // user is now signed out
-                    //todo:
-                    showSnackbar("sign out successful")
-                    finish()
-                }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

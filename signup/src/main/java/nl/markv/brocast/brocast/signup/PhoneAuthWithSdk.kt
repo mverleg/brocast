@@ -1,10 +1,18 @@
 package nl.markv.brocast.brocast.signup
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.telephony.TelephonyManager
 import android.text.TextUtils
+import android.util.Log
+import android.widget.Toast
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.FirebaseAuth
@@ -18,6 +26,7 @@ import nl.markv.brocast.brocast.signup.SignedInActivity
 import java.util.concurrent.TimeUnit
 import org.jetbrains.anko.info
 import org.jetbrains.anko.AnkoLogger
+import kotlin.text.Typography.tm
 
 class PhoneAuthWithSdk : AppCompatActivity(), AnkoLogger {
 
@@ -38,6 +47,17 @@ class PhoneAuthWithSdk : AppCompatActivity(), AnkoLogger {
         // [START initialize_auth]
         mAuth = FirebaseAuth.getInstance()
         // [END initialize_auth]
+//
+//        val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+//
+//        if ( ContextCompat.checkSelfPermission( this, android.Manifest.permission.READ_PHONE_STATE ) != PackageManager.PERMISSION_GRANTED ) {
+//
+//        }
+//
+//        //---get the phone number---
+//        val telNumber = tm.line1Number
+//        if (telNumber != null)
+//            Toast.makeText(this, "Phone number: $telNumber", Toast.LENGTH_LONG).show()
 
         initUI()
         initCallback()
