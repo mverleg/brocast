@@ -9,31 +9,47 @@ import org.jetbrains.anko.AnkoLogger
 import kotlinx.android.synthetic.main.signed_in_titlebar.*
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import org.jetbrains.anko.info
 
 class SignedInActivity : Activity(), AnkoLogger {
 
     private var userListView: ListView? = null
     private var userList: UserList? = null
 
+    lateinit var mAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signed_in)
 
-        btn_groups.setOnClickListener({
-            val intent = Intent(this, GroupActivity::class.java)
-            startActivity(intent)
-        })
+        // We want to see if the user has previously logged into the app before.
+        // If this is the case we go to the signed in screen.
+        // If this is not the case we navigate to the welcome screen.
+        mAuth = FirebaseAuth.getInstance()
+        val isUserSignedIn = FirebaseAuth.getInstance().currentUser != null
+        info("simple welcome_screen signedin " + isUserSignedIn)
+        if (!isUserSignedIn) {
+            info("show welcome screen")
+            startActivity(
+                    Intent(this, WelcomeScreen::class.java))
+        } else {
+            btn_groups.setOnClickListener({
+                val intent = Intent(this, GroupActivity::class.java)
+                startActivity(intent)
+            })
 
-        val userListView = findViewById(R.id.user_list_view) as ListView
-        userListView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, id ->
-            val intent = Intent(this, ConversationActivity::class.java)
-            intent.putExtra("userId", userList!!.get(position).id)
-            startActivity(intent)
+            val userListView = findViewById(R.id.user_list_view) as ListView
+            userListView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, id ->
+                val intent = Intent(this, ConversationActivity::class.java)
+                intent.putExtra("userId", userList!!.get(position).id)
+                startActivity(intent)
+            }
+
+            loadUsers()
         }
-
-        loadUsers()
     }
 
     fun loadUsers() {

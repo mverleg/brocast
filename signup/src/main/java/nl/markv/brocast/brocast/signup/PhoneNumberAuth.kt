@@ -1,6 +1,7 @@
 package nl.markv.brocast.brocast.signup
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -14,6 +15,8 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.ErrorCodes
+import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.FirebaseAuth
@@ -32,22 +35,8 @@ import kotlin.text.Typography.tm
 
 class PhoneNumberAuth : AppCompatActivity(), AnkoLogger {
 
-    lateinit var mAuth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_phone_auth_with_sdk)
-
-
-        // [START initialize_auth]
-        mAuth = FirebaseAuth.getInstance()
-        // [END initialize_auth]
-
-        val isUserSignedIn = FirebaseAuth.getInstance().currentUser != null
-
-        info("simple test signedin " + isUserSignedIn)
-        info("simple test user " + FirebaseAuth.getInstance().currentUser)
-        info("simple test auth " + mAuth)
         signIn()
     }
 
@@ -67,7 +56,7 @@ class PhoneNumberAuth : AppCompatActivity(), AnkoLogger {
                         .setAvailableProviders(
                                 Arrays.asList(phoneConfigWithDefaultNumber))
                         .build(),
-                PhoneAuthActivity.RC_SIGN_IN)
+                PhoneNumberAuth.RC_SIGN_IN)
     }
 
     fun signOut(){
@@ -80,6 +69,76 @@ class PhoneNumberAuth : AppCompatActivity(), AnkoLogger {
                     showSnackbar("sign out successful")
                     finish()
                 }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        // RC_SIGN_IN is the request code you passed into startActivityForResult(...)
+        // when starting the sign in flow.
+
+        if (requestCode == PhoneNumberAuth.RC_SIGN_IN) {
+            val response = IdpResponse.fromResultIntent(data)
+
+            info("response: $response")
+            when {
+                resultCode == Activity.RESULT_OK -> {
+                    // Successfully signed in
+                    showSnackbar("SignIn successful")
+                    startActivity(Intent(this,  SignedInActivity::class.java))
+                    finish()
+                }
+
+                response == null -> {
+                    // Sign in failed
+                    // User pressed back button
+                    showSnackbar("Sign in cancelled")
+                    return
+                }
+
+                response.errorCode == ErrorCodes.NO_NETWORK -> {
+                    // Sign in failed
+                    //No Internet Connection
+                    showSnackbar("No Internet connection")
+                    return
+                }
+
+                response.errorCode == ErrorCodes.UNKNOWN_ERROR -> {
+                    // Sign in failed
+                    //Unknown Error
+                    showSnackbar("Unknown error")
+                    return
+                }
+
+                else -> {
+                    showSnackbar("Unknown Response")
+                }
+
+            }
+            // Successfully signed in
+            /*if (resultCode == RESULT_OK) {
+                //todo:
+                showSnackbar("SignIn successful")
+//                startActivity()
+                finish()
+                return
+            } else {
+                // Sign in failed
+                if (response == null) {
+                    // User pressed back button
+                    showSnackbar("Sign in cancelled")
+                    return
+                }
+                if (response.errorCode == ErrorCodes.NO_NETWORK) {
+                    showSnackbar("No Internet connection")
+                    return
+                }
+                if (response.errorCode == ErrorCodes.UNKNOWN_ERROR) {
+                    showSnackbar("Unknown error")
+                    return
+                }
+            }
+            showSnackbar("Unknown Response");*/
+        }
     }
 
     fun showSnackbar(message: String){

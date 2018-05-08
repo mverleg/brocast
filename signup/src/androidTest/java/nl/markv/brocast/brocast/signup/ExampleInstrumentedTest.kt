@@ -9,7 +9,7 @@ import org.junit.runner.RunWith
 import org.junit.Assert.*
 
 /**
- * Instrumented test, which will execute on an Android device.
+ * Instrumented welcome_screen, which will execute on an Android device.
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
@@ -17,8 +17,8 @@ import org.junit.Assert.*
 class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
-        // Context of the app under test.
+        // Context of the app under welcome_screen.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("nl.markv.brocast.brocast.signup.test", appContext.packageName)
+        assertEquals("nl.markv.brocast.brocast.signup.welcome_screen", appContext.packageName)
     }
 }

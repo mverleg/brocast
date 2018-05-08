@@ -24,9 +24,6 @@ class PhoneAuthActivity : AppCompatActivity(), AnkoLogger {
 
         info("Start app")
 
-        but_fsdk_sign_in_.setOnClickListener({startActivity(
-                Intent(PhoneAuthActivity@this, PhoneNumberAuth::class.java))})
-
 //        but_fsdk_sign_in_.setOnClickListener({
 //            if (!isUserSignedIn) signIn()
 //        })
